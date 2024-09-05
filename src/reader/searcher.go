@@ -8,7 +8,9 @@ import (
 	"strings"
 )
 
-func SearchOneWordOccurence(word string) string {
+func SearchOneWordOccurence(word string) []string {
+
+	allResults := []string{}
 
 	searchedWord := strings.ToLower(word)
 
@@ -28,6 +30,7 @@ func SearchOneWordOccurence(word string) string {
 		defer file.Close()
 
 		reader := bufio.NewReader(file)
+		lineBuffer := make([]string, 0, 4)
 
 		for {
 			line, err := reader.ReadString('\n')
@@ -38,14 +41,30 @@ func SearchOneWordOccurence(word string) string {
 				fmt.Println("Error reading file:", err)
 				break
 			}
-			if strings.Contains(line, searchedWord) {
-				return fmt.Sprintf("I found it! : %s", file.Name())
+			lineBuffer = append(lineBuffer, line)
+			if len(lineBuffer) > 4 {
+				lineBuffer = lineBuffer[1:]
+			}
+			currFile := file.Name()
+
+			var result strings.Builder
+			searchValidatedSearchWord := " " + searchedWord + "\n"
+			result.WriteString(fmt.Sprintf("\n\nFile name : %s\n", currFile))
+
+			//Here the equality isn't full. if i search for example for test, it will return test even if the word is testing
+			if strings.Contains(strings.ToLower(line), searchValidatedSearchWord) {
+
+				result.WriteString(fmt.Sprintf("Searched word : %s\n", searchedWord))
+				result.WriteString(fmt.Sprintf(lineBuffer[0]))
+				result.WriteString(fmt.Sprintf(lineBuffer[1]))
+
+				allResults = append(allResults, result.String())
 			}
 		}
 
 	}
 
-	return "well well well, That's not supposed to happen ..."
+	return allResults
 }
 
 //func searchMultipleWordOccurence() {

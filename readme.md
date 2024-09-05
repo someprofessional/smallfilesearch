@@ -21,7 +21,7 @@ I want this app to be a cli app that do print into txt or pdf with a good interf
 
 ----------------------------------------------------------
 
-### See inputs documents :  
+### See inputs documents :
     alice.pdf
     other.txt
     random paper.txt

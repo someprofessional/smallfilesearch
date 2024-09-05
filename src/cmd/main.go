@@ -13,7 +13,7 @@ type Model struct {
 	Interactive bool
 	Loading     bool
 	SearchQuery string
-	Results     string
+	Results     []string
 }
 
 type Msg string

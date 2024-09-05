@@ -56,5 +56,12 @@ func (m Model) renderInteractiveView() string {
 }
 
 func (m Model) RenderSeeResultsView() string {
-	return fmt.Sprintf("Here are your results:\n%s", m.Results)
+	var s string
+	if len(m.Results) == 0 {
+		s = "Oops, there are no results."
+	} else {
+		s = fmt.Sprintln(m.Results)
+	}
+
+	return s
 }
