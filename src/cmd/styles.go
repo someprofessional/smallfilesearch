@@ -6,14 +6,12 @@ var titleStyle = lipgloss.NewStyle().
 	Width(100).
 	Bold(true).
 	Foreground(lipgloss.Color("208")).
-	Background(lipgloss.Color("233")).
 	Padding(1, 0).
 	Align(lipgloss.Center)
 
 var filesStyle = lipgloss.NewStyle().
 	Width(100).
 	Foreground(lipgloss.Color("7")).
-	Background(lipgloss.Color("234")).
 	Padding(1, 1).
 	Align(lipgloss.Left)
 

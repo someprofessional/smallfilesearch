@@ -37,9 +37,23 @@ func (m Model) renderFilesView() string {
 }
 
 func (m Model) renderInteractiveView() string {
+
+	// TODO : find a way to make this interactive
+	// maybe by using the view thing -- before that make it searchable
+	//searchParams := [2]string{"word", "sentences"}
+	//activeParam := 0
+	//wordArround := 0
+
+	//fmt.Printf("Choose your search option : %s", searchParams)
+
+	//if activeParam == 1 {
+	//	fmt.Println("how many words to you want arround the searched term ?")
+	//	fmt.Scan(&wordArround)
+	//}
+
 	return fmt.Sprintf("Searching for: %s\n", m.SearchQuery)
 }
 
 func (m Model) RenderSeeResultsView() string {
-	return fmt.Sprintf("Here are your results")
+	return fmt.Sprintln("Here are your results")
 }

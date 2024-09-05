@@ -2,7 +2,7 @@ package main
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/someprofessional/smallfilessearch/src/reader"
+	"github.com/someprofessional/smallfilesearch/src/reader"
 )
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {

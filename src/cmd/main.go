@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/someprofessional/smallfilessearch/src/reader"
+	"github.com/someprofessional/smallfilesearch/src/reader"
 )
 
 type Model struct {
@@ -43,6 +43,8 @@ func main() {
 
 func (m Model) Init() tea.Cmd {
 	if m.State == LoadingState {
+		//TODO: add a control to see if there are aldready files in the output
+		// if there are continue to next part
 		return reader.LoadFilesCmd()
 	}
 
