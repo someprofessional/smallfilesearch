@@ -1,4 +1,4 @@
-module github.com/someprofessional/smallfilessearch
+module github.com/someprofessional/smallfilesearch
 
 go 1.23.0
 

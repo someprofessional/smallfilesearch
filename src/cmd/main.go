@@ -8,20 +8,23 @@ import (
 )
 
 type Model struct {
-	State       string
+	State       AppState
 	Files       []string
 	Interactive bool
 	Loading     bool
 	SearchQuery string
+	Results     string
 }
 
 type Msg string
 
+type AppState int
+
 const (
-	LoadingState     = "loading"
-	LoadedState      = "loaded"
-	InteractiveState = "interactive"
-	seeResultsState  = "results"
+	LoadingState AppState = iota
+	LoadedState
+	InteractiveState
+	seeResultsState
 
 	FileLoadedMsg Msg = "file_loaded"
 )

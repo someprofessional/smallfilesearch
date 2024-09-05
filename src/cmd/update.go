@@ -16,10 +16,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		keyMsg := msg
 		switch keyMsg.String() {
-		case "ctrl+c": // Example: quit when 'q' is pressed
+		case "ctrl+c":
 			return m, tea.Quit
 		case "enter":
 			if m.State == InteractiveState {
+				results := reader.SearchOneWordOccurence(m.SearchQuery) // Capture results
+				m.Results = results
 				m.State = seeResultsState
 				return m, nil
 			}
@@ -27,7 +29,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, nil
 		case "backspace":
 			if len(m.SearchQuery) > 0 {
-				m.SearchQuery = m.SearchQuery[:len(m.SearchQuery)-1] // Remove last character
+				m.SearchQuery = m.SearchQuery[:len(m.SearchQuery)-1]
 			}
 			return m, nil
 		default:

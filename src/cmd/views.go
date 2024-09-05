@@ -52,8 +52,9 @@ func (m Model) renderInteractiveView() string {
 	//}
 
 	return fmt.Sprintf("Searching for: %s\n", m.SearchQuery)
+
 }
 
 func (m Model) RenderSeeResultsView() string {
-	return fmt.Sprintln("Here are your results")
+	return fmt.Sprintf("Here are your results:\n%s", m.Results)
 }
