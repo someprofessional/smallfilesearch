@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/someprofessional/smallfilesearch/src/reader"
@@ -30,7 +31,12 @@ const (
 )
 
 func main() {
+	outputDir := "../../output/"
 
+	// Clean up the output directory
+	if err := cleanOutputDir(outputDir); err != nil {
+		log.Fatalf("Error cleaning output directory: %v", err)
+	}
 	styledTitle := titleStyle.Render("Hello smallfilesearch !")
 
 	fmt.Println(styledTitle)

@@ -65,7 +65,6 @@ func LoadFilesCmd() tea.Cmd {
 					wordMap[word].Occurence++
 					wordMap[word].WordNumbers = append(wordMap[word].WordNumbers, wordPosition)
 					wordPosition++
-
 				}
 			}
 
@@ -73,7 +72,6 @@ func LoadFilesCmd() tea.Cmd {
 				log.Fatal(err)
 			}
 
-			//then append the structure to the newly created file
 			var sb strings.Builder
 			for _, wordInfo := range wordMap {
 				sb.WriteString(fmt.Sprintf("Word: %s\n", wordInfo.Word))
@@ -100,6 +98,21 @@ func LoadFilesCmd() tea.Cmd {
 }
 
 func splitIntoWords(text string) []string {
-	re := regexp.MustCompile(`\b\w+\b`)
-	return re.FindAllString(text, -1)
+	re := regexp.MustCompile(`[a-zA-Z]{4,}`)
+	matches := re.FindAllString(text, -1)
+
+	var cleanedWords []string
+	for _, match := range matches {
+		cleanedWord := cleanWord(match)
+		if cleanedWord != "" {
+			cleanedWords = append(cleanedWords, cleanedWord)
+		}
+	}
+	return cleanedWords
+}
+
+func cleanWord(word string) string {
+
+	re := regexp.MustCompile(`[ _";:]`)
+	return re.ReplaceAllString(word, "")
 }

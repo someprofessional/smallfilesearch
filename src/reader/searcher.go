@@ -20,7 +20,6 @@ func SearchOneWordOccurence(word string) []string {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	for _, file := range files {
 		file, err := os.Open(outputDir + file.Name())
 		if err != nil {
@@ -48,13 +47,12 @@ func SearchOneWordOccurence(word string) []string {
 			currFile := file.Name()
 
 			var result strings.Builder
-			searchValidatedSearchWord := " " + searchedWord + "\n"
+			searchValidatedSearchWord := " " + searchedWord
 			result.WriteString(fmt.Sprintf("\n\nFile name : %s\n", currFile))
 
-			//Here the equality isn't full. if i search for example for test, it will return test even if the word is testing
+			//Here the equality isn't fully correct, i think the punctuation and other things give me back false results
 			if strings.Contains(strings.ToLower(line), searchValidatedSearchWord) {
 
-				result.WriteString(fmt.Sprintf("Searched word : %s\n", searchedWord))
 				result.WriteString(fmt.Sprintf(lineBuffer[0]))
 				result.WriteString(fmt.Sprintf(lineBuffer[1]))
 
